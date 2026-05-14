@@ -1,0 +1,42 @@
+body {
+    font-family: "lumios-typewriter-new", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding-top: 56px;
+}
+
+.navbar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #7c0303;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: white;
+}
+
+.nav-link:hover {
+    color: #fd979c; /* swap in whatever color you want */
+}
+
+.navbar-brand:hover {
+    color: #fd979c;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+.navbar-toggler {
+    border-color: rgb(255, 255, 255);
+}
+
+footer a {
+    text-decoration: none;
+    color: #7c0303;
+}
+
+footer a:hover {
+    color: #b8474d;
+}
