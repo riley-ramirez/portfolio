@@ -40,3 +40,16 @@ footer a {
 footer a:hover {
     color: #b8474d;
 }
+
+.card {
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body .btn {
+    margin-top: auto;
+}
