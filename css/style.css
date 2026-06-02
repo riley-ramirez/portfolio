@@ -3,12 +3,29 @@ body {
     font-weight: 400;
     font-style: normal;
     padding-top: 56px;
+    background-image: url('../assets/images/paper.jpeg');
+    background-size: cover;
+    background-position: center;
+    z-index: 10;
+
+    /* Add these three lines: */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    flex: 1;
+}
+
+footer {
+    padding-bottom: 1rem;
 }
 
 .navbar {
     padding-left: 1rem;
     padding-right: 1rem;
-    background-color: #7c0303;
+    background-color: #93A265;
 }
 
 .navbar .nav-link,
@@ -17,11 +34,11 @@ body {
 }
 
 .nav-link:hover {
-    color: #fd979c; /* swap in whatever color you want */
+    color: #c7d799; /* swap in whatever color you want */
 }
 
 .navbar-brand:hover {
-    color: #fd979c;
+    color: #c7d799;
 }
 
 .navbar-toggler-icon {
@@ -34,11 +51,11 @@ body {
 
 footer a {
     text-decoration: none;
-    color: #7c0303;
+    color: #93A265;
 }
 
 footer a:hover {
-    color: #b8474d;
+    color: #c7d799;
 }
 
 .card {
@@ -52,4 +69,11 @@ footer a:hover {
 
 .card-body .btn {
     margin-top: auto;
+}
+
+.decoration {
+    position: absolute;
+    width: 15%; 
+    pointer-events: none;
+    z-index: -1;
 }
