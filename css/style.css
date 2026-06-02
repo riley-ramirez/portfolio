@@ -4,14 +4,34 @@ body {
     font-style: normal;
     padding-top: 56px;
     background-image: url('../assets/images/paper.jpeg');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
+    background-repeat: repeat;
     z-index: 10;
 
     /* Add these three lines: */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+@font-face {
+    font-family: "Bronzerr"; 
+    src: url('../fonts/Bronzerr-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Bronzie"; 
+    src: url('../fonts/Bronzie-Regular.ttf') format('truetype');
+}
+
+h1, h2, h3, h4 {
+    font-family: "Bronzie", sans-serif;
+}
+
+li {
+    font-family: "Bronzie", sans-serif;
+    font-size: 1.75rem;
 }
 
 header {
@@ -26,11 +46,15 @@ footer {
     padding-left: 1rem;
     padding-right: 1rem;
     background-color: #93A265;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
 }
 
 .navbar .nav-link,
 .navbar .navbar-brand {
     color: white;
+    font-family: "Bronzie", sans-serif;
+    font-size: 2rem;
 }
 
 .nav-link:hover {
