@@ -9,7 +9,6 @@ body {
     background-repeat: repeat;
     z-index: 10;
 
-    /* Add these three lines: */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -35,7 +34,8 @@ li {
 }
 
 header {
-    flex: 1;
+    flex: 0 0 auto;
+    padding-bottom: 2rem;
 }
 
 footer {
@@ -58,7 +58,7 @@ footer {
 }
 
 .nav-link:hover {
-    color: #c7d799; /* swap in whatever color you want */
+    color: #c7d799;
 }
 
 .navbar-brand:hover {
@@ -82,22 +82,98 @@ footer a:hover {
     color: #c7d799;
 }
 
-.card {
-    height: 100%;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-body .btn {
-    margin-top: auto;
-}
-
 .decoration {
     position: absolute;
     width: 15%; 
     pointer-events: none;
     z-index: -1;
+}
+
+/* Article list layout */
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.article-item {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    position: relative;
+    gap: 10rem;
+    padding: 6rem 0;
+    border-bottom: 1px solid #ccc;
+}
+
+main.container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 1rem;
+    max-width: 1400px;
+}
+
+.article-item:first-child {
+    padding-top: 2rem;
+}
+
+.article-item img {
+    width: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 0px;
+}
+
+.article-item .article-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    line-height: 1.35;
+    padding-bottom: 2rem;
+}
+
+.article-item .article-text h5 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.article-item .article-text p {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    margin-top: 3rem;
+}
+
+.article-item .article-text a {
+    position: absolute;
+    bottom: 6rem; /* matches article-item padding */
+    right: 0;
+    width: calc(50% - 10rem); /* mirrors image width and gap */
+    color: #93A265;
+    text-decoration: none;
+    font-family: "Bronzie", sans-serif;
+    font-size: 1.45rem;
+}
+
+.article-item .article-text a:hover {
+    color: #c7d799;
+}
+
+@media (max-width: 767px) {
+    .article-item {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 2rem 0;
+    }
+
+    .article-item img {
+        width: 100%;
+    }
+
+    .article-item .article-text a {
+        position: static;
+        width: auto;
+        margin-top: 1rem;
+    }
 }

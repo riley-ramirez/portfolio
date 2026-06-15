@@ -8,15 +8,81 @@
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/vxo8ocr.css">
     <title>Riley Ramirez | Portfolio</title>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        header {
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 767px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            header {
+                padding-bottom: 0 !important;
+                min-height: unset !important;
+                overflow-x: hidden;
+            }
+
+            .headshot-img {
+                max-width: 90% !important;
+                margin-left: 0 !important;
+            }
+
+            h1.display-3 {
+                line-height: clamp(2rem, 8vw, 3.5rem) !important;
+            }
+
+            .deco-flowers,
+            .deco-star-bottom {
+                display: none !important;
+            }
+
+            .mobile-deco-row {
+                display: flex !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .mobile-deco-row {
+                display: none !important;
+            }
+        }
+
+        .mobile-deco-row {
+            display: none;
+            align-items: flex-end;
+            padding: 0rem 1.5rem 0.5rem;
+            position: relative;
+            min-height: 40px;
+        }
+
+        .mobile-deco-row .deco-m-star {
+            width: clamp(80px, 14vw, 110px);
+            transform: rotate(-15deg);
+            margin-left: -1.5rem;
+            margin-right: auto; /* pins star left, pushes rest right */
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+        }
+
+        .mobile-deco-row .deco-m-flowers {
+            width: clamp(100px, 30vw, 160px);
+            margin-right: -3rem; /* pins flowers to right edge */
+            margin-bottom: -1rem; /* flowers anchor to bottom */
+        }
+    </style>
 </head>
 
 <body>
 
-     <nav class="navbar navbar-expand-md fixed-top z-10">
-        <!-- Home link pinned to the left -->
+    <nav class="navbar navbar-expand-md fixed-top z-10">
         <a class="navbar-brand" href="index.html">Riley Ramirez</a>
 
-        <!-- Hamburger toggle (visible on mobile) -->
         <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navMenu"
@@ -26,12 +92,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Links aligned to the right -->
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto">
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="writing.html">Writing</a>
                 </li>
@@ -48,11 +110,17 @@
 
     <header class="d-flex align-items-center justify-content-center">
         <div class="container position-relative">
-        
+
             <div class="row align-items-center gx-5">
                 <div class="col-12 col-md-6 mb-4 text-center">
-                    <img src="assets/images/headshot.png" alt="Riley Ramirez" class="img-fluid" style="max-width: 125%; 
-                    margin-left: -80px; margin-top: 10px;">
+                    <picture>
+                        <!-- Mobile: centered crop (swap src when ready) -->
+                        <source media="(max-width: 767px)" srcset="assets/images/headshot.png">
+                        <!-- Desktop: original offset headshot -->
+                        <img src="assets/images/headshot.png" alt="Riley Ramirez"
+                             class="img-fluid headshot-img"
+                             style="max-width: 125%; margin-left: -80px; margin-top: 10px;">
+                    </picture>
                 </div>
                 <div class="col-12 col-md-6 text-center text-md-start">
                     <h1 class="mb-4 display-3" style="line-height: 3.5rem;">Hi! I'm Riley Ramirez. Welcome to my portfolio.</h1>
@@ -61,25 +129,34 @@
                         reporting. I'm passionate about visual storytelling with experience 
                         in web design, video reporting and motion graphics. My stories have 
                         been featured in Richmondside, KPBS, Civil Eats, Bay Nature, Local 
-                        News Matters and KneeDeep Times. </p>
+                        News Matters and KneeDeep Times.</p>
                 </div>
             </div>
 
-        <!-- your decoration images -->
-            <img src="assets/images/star-sticker.png" alt="" class="decoration" style="top: 5%; right: 1%; width: 12%; transform: rotate(15deg);">
-            <img src="assets/images/more-about-me.png" alt="" class="decoration" style="bottom: 2%; right: 5%;">
-            <img src="assets/images/flowers-sticker.png" alt="" class="decoration" style="bottom: 3%; right: -10%; width: 18%;">
-             <img src="assets/images/star-sticker.png" alt="" class="decoration" style="bottom: 5%; right: 30%; width: 8%; transform: rotate(-15deg);">
+            <!-- Desktop-only decorations (bottom stickers stay in header on desktop) -->
+            <img src="assets/images/star-sticker.png" alt="" class="decoration deco-star-top"
+                 style="top: 5%; right: 1%; width: 12%; transform: rotate(15deg);">
+            <img src="assets/images/flowers-sticker.png" alt="" class="decoration deco-flowers"
+                 style="bottom: 3%; right: -10%; width: 18%;">
+            <img src="assets/images/star-sticker.png" alt="" class="decoration deco-star-bottom"
+                 style="bottom: 5%; right: 30%; width: 8%; transform: rotate(-15deg);">
 
         </div>
     </header>
 
-    
+    <!-- Mobile-only sticker row: sits naturally below the header/bio text -->
+    <div class="mobile-deco-row">
+        <img src="assets/images/star-sticker.png" alt="" class="deco-m-star">
+        <img src="assets/images/flowers-sticker.png" alt="" class="deco-m-flowers">
+    </div>
 
     <footer>
-        <p class="text-center mt-5"> <a href="contact.html">Contact me</a></p>
+        <p class="text-center mt--10"><a href="contact.html">Contact me</a></p>
     </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
