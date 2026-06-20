@@ -130,8 +130,8 @@ main.container {
     width: 50%;
     height: auto;
     flex-shrink: 0;
-    object-fit: contain;
-    object-position: top;
+    object-fit: contain !important;
+    object-position: top !important;
     border-radius: 0px;
 }
 
