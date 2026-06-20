@@ -27,53 +27,213 @@
                 min-height: unset !important;
                 overflow-x: hidden;
             }
-
-            .headshot-img {
-                max-width: 90% !important;
-                margin-left: 0 !important;
-            }
-
-            h1.display-3 {
-                line-height: clamp(2rem, 8vw, 3.5rem) !important;
-            }
-
-            .deco-flowers,
-            .deco-star-bottom {
-                display: none !important;
-            }
-
-            .mobile-deco-row {
-                display: flex !important;
-            }
         }
 
-        @media (min-width: 768px) {
-            .mobile-deco-row {
-                display: none !important;
-            }
-        }
+        /* =========================================================
+           Scrapbook hero header
+           ========================================================= */
 
-        .mobile-deco-row {
-            display: none;
-            align-items: flex-end;
-            padding: 0rem 1.5rem 0.5rem;
+        .scrapbook-hero {
             position: relative;
-            min-height: 40px;
+            width: 100%;
+            overflow: hidden;
+            padding: 4rem 4vw 3rem;
         }
 
-        .mobile-deco-row .deco-m-star {
-            width: clamp(80px, 14vw, 110px);
-            transform: rotate(-15deg);
-            margin-left: -1.5rem;
-            margin-right: auto; /* pins star left, pushes rest right */
-            margin-top: -2rem;
-            margin-bottom: 4rem;
+        /*
+           The collage canvas is NOT locked to a fixed aspect ratio
+           (a fixed aspect-ratio forced a short box and let tall images
+           like the photostrip spill out past the bottom). Instead this
+           is a normal positioned container sized by min-height.
+        */
+        .collage-canvas {
+            position: relative;
+            width: 100%;
+            max-width: 1600px;
+            min-height: 85vh;
+            margin: 0 auto;
         }
 
-        .mobile-deco-row .deco-m-flowers {
-            width: clamp(100px, 30vw, 160px);
-            margin-right: -3rem; /* pins flowers to right edge */
-            margin-bottom: -1rem; /* flowers anchor to bottom */
+        /* ---------- Portfolio script drawing ---------- */
+
+        .portfolio-script {
+            position: relative;
+            display: block;
+            width: 100%;
+            max-width: 680px;
+            height: auto;
+            margin-top: 0rem;
+            transform: rotate(-4deg);
+        }
+
+        /* ---------- Scattered stars ---------- */
+
+        .deco-star {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+            height: auto;
+        }
+
+        .deco-star-blue {
+            left: 3%;
+            top: 58%;
+            width: 100px;
+        }
+
+        .deco-star-pink {
+            left: 22%;
+            top: 70%;
+            width: 200px;
+        }
+
+        /* ---------- Note / torn lined paper with overlaid bio text ---------- */
+
+        .note-wrap {
+            position: absolute;
+            right: 5%;
+            top: 10%;
+            width: 50%;
+            max-width: 840px;
+        }
+
+        .note-paper {
+            width: 90%;
+            height: auto;
+            display: block;
+        }
+
+        .note-text {
+            position: absolute;
+            top: 23%;
+            left: 16%;
+            right: 20%;
+            z-index: 2;
+            text-align: left;
+        }
+
+        .note-heading {
+            font-size: 3.1rem;
+            line-height: 2.5rem;
+            margin-bottom: 2.25rem;
+        }
+
+        .note-body {
+            font-size: 1.15rem;
+            line-height: 1.85rem;
+            margin-bottom: 0;
+        }
+
+        /* ---------- Photostrip, pinned along the note's right edge ----------
+           NOTE: this previously used `height: 100%`, which only resolves
+           against a parent with an explicit height. .note-wrap has no set
+           height (it's sized by its content), so that percentage had
+           nothing to resolve against and silently fell back to the image's
+           natural size — which is why resizing attempts weren't doing
+           anything. Using a fixed height unit fixes that.
+        */
+        .photostrip {
+            position: absolute;
+            right: -15%;
+            top: -6.5rem;
+            height: 760px;
+            width: auto;
+            z-index: 3;
+            filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.25));
+            transform: rotate(4deg);
+        }
+
+        /* =========================================================
+           Responsive adjustments
+           ========================================================= */
+
+        @media (max-width: 991px) {
+            .note-wrap {
+                right: 11%;
+                width: 48%;
+            }
+
+            .photostrip {
+                right: -3%;
+                height: 480px;
+            }
+        }
+
+        /* Below ~700px the collage gets too cramped for the side-by-side
+           layout from the mockup, so we switch to a stacked arrangement:
+           script drawing on top, note below, photostrip tucked along the
+           note's top-right corner. */
+        @media (max-width: 700px) {
+            .scrapbook-hero {
+                padding: 2.5rem 1.25rem 3rem;
+                margin-bottom: 2rem;
+            }
+
+            .collage-canvas {
+                min-height: 650px;
+            }
+
+            .portfolio-script {
+                width: 100%;
+                max-width: 500px;
+                margin: 1rem auto 1rem;
+                left: 2%;
+            }
+
+            .deco-star-blue {
+                width: 40px;
+                left: 4%;
+                top: -3rem;
+                bottom: auto;
+                transform: rotate(2deg);
+            }
+
+            .deco-star-pink {
+                width: 75px;
+                left: auto;
+                right: -2%;
+                top: 25%;
+                bottom: auto;
+                transform: rotate(5deg);
+            }
+
+            .note-wrap {
+                position: relative;
+                right: 5%;
+                top: auto;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .note-paper {
+                width: 90%;
+                height: auto;
+                display: block;
+            }
+
+            .note-text {
+                top: 23%;
+                left: 15%;
+                right: 20%;
+            }
+
+            .note-heading {
+                font-size: 1.5rem;
+                line-height: 1.45rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .note-body {
+                font-size: 0.65rem;
+                line-height: 0.85rem;
+            }
+
+            .photostrip {
+                right: -17%;
+                top: -1rem;
+                height: 420px;
+            }
         }
     </style>
 </head>
@@ -108,47 +268,38 @@
     </nav>
 
 
-    <header class="d-flex align-items-center justify-content-center">
-        <div class="container position-relative">
+    <header class="scrapbook-hero">
 
-            <div class="row align-items-center gx-5">
-                <div class="col-12 col-md-6 mb-4 text-center">
-                    <picture>
-                        <!-- Mobile: centered crop (swap src when ready) -->
-                        <source media="(max-width: 767px)" srcset="assets/images/headshot.png">
-                        <!-- Desktop: original offset headshot -->
-                        <img src="assets/images/headshot.png" alt="Riley Ramirez"
-                             class="img-fluid headshot-img"
-                             style="max-width: 125%; margin-left: -80px; margin-top: 10px;">
-                    </picture>
-                </div>
-                <div class="col-12 col-md-6 text-center text-md-start">
-                    <h1 class="mb-4 display-3" style="line-height: 3.5rem;">Hi! I'm Riley Ramirez. Welcome to my portfolio.</h1>
-                    <p class="fs-8">I am a recent graduate of the UC Berkeley Graduate 
-                        School of Journalism where I emphasized in multimedia and climate 
-                        reporting. I'm passionate about visual storytelling with experience 
-                        in web design, video reporting and motion graphics. My stories have 
-                        been featured in Richmondside, KPBS, Civil Eats, Bay Nature, Local 
+        <div class="collage-canvas">
+
+            <!-- scattered decorative stars -->
+            <img src="assets/images/bluestar.png" alt="" class="deco-star deco-star-blue" aria-hidden="true">
+            <img src="assets/images/pinkstar.png" alt="" class="deco-star deco-star-pink" aria-hidden="true">
+
+            <!-- Portfolio script drawing -->
+            <img src="assets/images/portfolioby.png" alt="Portfolio of Riley Ramirez" class="portfolio-script">
+
+            <!-- torn lined-paper note with bio text overlaid -->
+            <div class="note-wrap">
+                <img src="assets/images/scrappaper.png" alt="" class="note-paper" aria-hidden="true">
+
+                <div class="note-text">
+                    <h1 class="note-heading">Hi! I'm Riley Ramirez.<br>Welcome to my portfolio.</h1>
+                    <p class="note-body">I am a recent graduate of the UC Berkeley Graduate
+                        School of Journalism where I emphasized in multimedia and climate
+                        reporting. I'm passionate about visual storytelling with experience
+                        in web design, video reporting and motion graphics. My stories have
+                        been featured in Richmondside, KPBS, Civil Eats, Bay Nature, Local
                         News Matters and KneeDeep Times.</p>
                 </div>
+
+                <!-- photostrip pinned along the note's right edge -->
+                <img src="assets/images/photostrip.png" alt="Photo strip of Riley at graduation" class="photostrip">
             </div>
 
-            <!-- Desktop-only decorations (bottom stickers stay in header on desktop) -->
-            <img src="assets/images/star-sticker.png" alt="" class="decoration deco-star-top"
-                 style="top: 5%; right: 1%; width: 12%; transform: rotate(15deg);">
-            <img src="assets/images/flowers-sticker.png" alt="" class="decoration deco-flowers"
-                 style="bottom: 3%; right: -10%; width: 18%;">
-            <img src="assets/images/star-sticker.png" alt="" class="decoration deco-star-bottom"
-                 style="bottom: 5%; right: 30%; width: 8%; transform: rotate(-15deg);">
-
         </div>
-    </header>
 
-    <!-- Mobile-only sticker row: sits naturally below the header/bio text -->
-    <div class="mobile-deco-row">
-        <img src="assets/images/star-sticker.png" alt="" class="deco-m-star">
-        <img src="assets/images/flowers-sticker.png" alt="" class="deco-m-flowers">
-    </div>
+    </header>
 
     <footer>
         <p class="text-center mt--10"><a href="contact.html">Contact me</a></p>
@@ -157,6 +308,3 @@
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
