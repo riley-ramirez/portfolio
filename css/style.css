@@ -128,8 +128,10 @@ main.container {
 
 .article-item img {
     width: 50%;
+    height: auto;
     flex-shrink: 0;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: top;
     border-radius: 0px;
 }
 
